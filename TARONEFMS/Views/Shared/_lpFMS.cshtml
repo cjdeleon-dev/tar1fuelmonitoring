@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/Content/css/mycss.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.6.1.js"></script>
+    <script src="~/Scripts/jquery-3.6.1.min.js"></script>
+    
+    <script src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="vertical-nav" id="sidebar">
+        <br />
+        <div class="py-4 px-3 mb-4" style="text-align:center;">
+            <div class="media d-flex align-items-center">
+                <div class="media-body">
+                    @*<img src="~/Content/images/tarelco1.PNG" class="img-fluid" width="180" height="180" />*@
+                    @{Html.RenderAction("UserInfo","LoggedUser");}
+                    <strong>
+                        <a href="@Url.Action("Signout","Authentication")" class="nav-link text-danger">
+                            <i class="fa-fw"></i>
+                            Sign Out
+                        </a>
+                    </strong>
+                </div>
+            </div>
+        </div>
+        <hr style="border-color:darkred;" />
+
+        <p class="text-black-50 font-weight-bold text-uppercase px-3 small pb-4 mb-0 text-center">MAIN MENU</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a href="@Url.Action("Index","Dashboard")" class="nav-link font-italic">
+                    <i class="glyphicon glyphicon-th-large mr-3 text-primary fa-fw"></i>
+                    DASHBOARD
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Index","FueledVehicles")" class="nav-link font-italic">
+                    <i class="glyphicon glyphicon-download-alt mr-3 text-primary fa-fw"></i>
+                    FUELED VEHICLES
+                </a>
+            </li>
+
+        </ul>
+        <br />
+        <p class="text-black-50 font-weight-bold text-uppercase px-3 small py-4 mb-0 text-center">MANAGEMENT</p>
+
+        <ul class="nav flex-column bg-white mb-0">
+            <li class="nav-item">
+                <a href="@Url.Action("Users","Management")" class="nav-link font-italic">
+                    <i class=" glyphicon glyphicon-user mr-3 text-primary fa-fw"></i>
+                    USERS
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Vehicles","Management")" class="nav-link font-italic">
+                    <i class="glyphicon glyphicon-star mr-3 text-primary fa-fw"></i>
+                    VEHICLES
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Makes","Management")" class="nav-link font-italic">
+                    <i class="glyphicon glyphicon-inbox mr-3 text-primary fa-fw"></i>
+                    MAKES
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Status","Management")" class="nav-link font-italic">
+                    <i class="glyphicon glyphicon-euro mr-3 text-primary fa-fw"></i>
+                    STATUS
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Offices","Management")" class="nav-link font-italic">
+                    <i class="glyphicon glyphicon-tower mr-3 text-primary fa-fw"></i>
+                    OFFICES
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Positions","Management")" class="nav-link font-italic">
+                    <i class="glyphicon glyphicon-flag mr-3 text-primary fa-fw"></i>
+                    POSITIONS
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="@Url.Action("Modules","Management")" class="nav-link font-italic">
+                    <i class="glyphicon glyphicon-tag mr-3 text-primary fa-fw"></i>
+                    RIGHTS
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="page-content p-5" id="content">
+        @RenderBody()
+    </div>
+
+</body>
+</html>
+
+@*<script>
+    //session end
+    var sessionTimeoutWarning = @Session.Timeout;
+
+    var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+    setTimeout('SessionEnd()', sTimeout);
+
+    function SessionEnd() {
+        window.location = "/Authentication/Signout"; //Redirect to signout, and then redirect to login
+    }
+</script>*@

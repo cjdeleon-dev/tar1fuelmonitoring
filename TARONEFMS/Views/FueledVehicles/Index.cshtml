@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Fueled Vehicles";
+    Layout = "~/Views/Shared/_lpFMS.cshtml";
+}
+
+<script src="~/Content/js/jsFueledVehicles_v1.0.8.js"></script>
+
+<h4>Fueled Vehicles</h4>
+
+<hr />
+
+<div class="row" id="mainButton">
+    <div class="offset-1 col-lg-10">
+        <div class="form-group">
+            <button type="button" class="btn btn-light bg-primary rounded-pill shadow-sm px-4 mb-4" data-toggle="modal" data-target="#myModal" onclick="showModal()">
+                <small class="text-uppercase font-weight-bold"> New Entry</small>
+            </button>
+            <button type="button" class="btn btn-light bg-info rounded-pill shadow-sm px-4 mb-4" data-toggle="modal" data-target="#myRptModal" onclick="showExportModal()">
+                <small class="text-uppercase font-weight-bold"> Export</small>
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="listFV">
+    <div class="row">
+        <div class="offset-1 col-lg-10">
+            <table class="table table-hover table-bordered table-responsive" id="tblFVs" cellpadding="0" cellspacing="0" border="1" style="border-collapse:collapse">
+                <thead class="bg-info">
+                    <tr>
+                        <th class="text-center">Id</th>
+                        <th class="text-center" hidden="hidden">Vehicle Id</th>
+                        <th class="text-center">Vehicle</th>
+                        <th class="text-center">Vehicle No.</th>
+                        <th class="text-center">Plate No.</th>
+                        <th class="text-center">Date Fueled</th>
+                        <th class="text-center">Liter(s)</th>
+                        <th class="text-center">Amount</th>
+                        <th class="text-center">Date Entry</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Fueled Vehicle Entry</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeModal()"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-1">
+                        <div class="form-group">
+                            <strong><label for="chkIsPrivate">Is Private Vehicle / Other</label></strong><br />
+                            <input type="checkbox" id="chkIsPrivate" name="chkIsPrivate" onchange="chkOnChange()" />
+                        </div>
+                    </div>
+                    <div class="col-lg-3" id="divCompany">
+                        <div class="form-group">
+                            <strong><label for="cboVehicle">Select Vehicle</label></strong>
+                            <select id="cboVehicle" class="form-control select2 select2-hidden-accessible" style="min-width: 100%"></select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3" id="divPrivate">
+                        <div class="form-group">
+                            <strong><label for="txtVehicle">Vehicle and Plate No.</label></strong>
+                            <input type="text" class="form-control" id="txtVehicle" placeholder="Vehicle and Plate No.">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <strong><label for="txtStation">Station</label></strong>
+                            <input type="text" class="form-control" id="txtStation" placeholder="Station Name">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <strong><label for="txtAddress">Address</label></strong>
+                            <input type="text" class="form-control" id="txtAddress" placeholder="Station Address">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-1 col-lg-3">
+                        <div class="form-group">
+                            <strong><label for="dtpDateFueled">Date Fueled</label></strong>
+                            <input type="date" class="form-control" id="dtpDateFueled" />
+                        </div>
+                    </div>
+                    <div class="offset-1 col-lg-3">
+                        <div class="form-group">
+                            <strong><label for="txtLiter">Liter(s)</label></strong>
+                            <input type="text" class="form-control" id="txtNoOfLiter" style="text-align:right;" onkeydown="numberWithCommas(this)" placeholder="0.00" />
+                        </div>
+                    </div>
+                    <div class="offset-1 col-lg-3">
+                        <div class="form-group">
+                            <strong><label for="txtAmount">Amount Fueled(PHP)</label></strong>
+                            <input type="text" class="form-control" id="txtAmount" style="text-align:right;" onkeydown="numberWithCommas(this)" placeholder="0.00" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-3 col-lg-3">
+                    <div class="form-group">
+                        <strong><label for="txtSINo">Sales Invoice No.</label></strong>
+                        <input type="text" class="form-control" id="txtSINo" style="text-align:center;" />
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <strong><label for="txtGasSlipNo">Gas Slip No.</label></strong>
+                        <input type="text" class="form-control" id="txtGasSlip" style="text-align:center;" />
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="saveEntry()">Save Entry</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myExportModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Export Parameter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeExportModal()"><span aria-hidden="true">&times;</span></button>
+            </div>
+            @using (Html.BeginForm("ExportToExcel", "FueledVehicles", FormMethod.Post, new { id = "frmExport" }))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        <span>Please select fueled date range.</span>
+                        <div class="row">
+                            <div class="offset-3 col-lg-3">
+                                <small class="text-uppercase font-weight-bold">Date From:</small><br />
+                                <input type="date" id="dtpDateFrom" name="dtpDateFrom" class="form-control" />
+                            </div>
+                            <div class="col-lg-3">
+                                <small class="text-uppercase font-weight-bold">Date To:</small><br />
+                                <input type="date" id="dtpDateTo" name="dtpDateTo" class="form-control" />
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="offset-3 col-lg-3">
+                                <input type="radio" checked style="vertical-align:middle;" id="rbSumFormat" name="rbOption" value="summary">
+                                <label class="font-weight-bold">EXPORT AS SUMMARY FORMAT</label>
+                            </div>
+                            <div class="col-3">
+                                <input type="radio" style="vertical-align:middle;" id="rbUserFormat" name="rbOption" value="byuser">
+                                <label class="font-weight-bold">EXPORT AS PER USER FORMAT</label>
+                            </div>
+                        </div>
+                        @*<input type="text" id="txtSelectedOption" class="form-control" />*@
+                        <small class="text-uppercase font-weight-bold bg-warning" id="validationMsg"></small>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="divRptCloseBtn">
+                        <button type="button" class="btn btn-primary" id="btnExport" onclick="subExport()">Export Now</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="closeExportModal()">Close</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(
+        loadDataToDataTable()
+    );
+</script>

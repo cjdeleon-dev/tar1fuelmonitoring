@@ -1,0 +1,13 @@
+﻿@model TARONEFMS.Models.UserLoggedModel
+
+@{
+    var imgSrc = "";
+    var base64 = "";
+
+    base64 = Convert.ToBase64String(Model.UserPic);
+    imgSrc = String.Format("data:image/jpg;base64,{0}", base64);
+}
+
+<img src="@imgSrc" alt="..." width="65" class="mr-3 img-thumbnail shadow-sm">
+<h4 class="m-0" id="uname">@Model.Name</h4>
+<p class="font-weight-light text-muted mb-0" id="uposition">@Model.Position</p>

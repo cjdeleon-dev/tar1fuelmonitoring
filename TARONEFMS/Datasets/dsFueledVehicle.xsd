@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsFueledVehicle" targetNamespace="http://tempuri.org/dsFueledVehicle.xsd" xmlns:mstns="http://tempuri.org/dsFueledVehicle.xsd" xmlns="http://tempuri.org/dsFueledVehicle.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsFueledVehicle" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFueledVehicle" msprop:Generator_UserDSName="dsFueledVehicle">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtFueledVehicle" msprop:Generator_TableClassName="dtFueledVehicleDataTable" msprop:Generator_TableVarName="tabledtFueledVehicle" msprop:Generator_TablePropName="dtFueledVehicle" msprop:Generator_RowDeletingName="dtFueledVehicleRowDeleting" msprop:Generator_RowChangingName="dtFueledVehicleRowChanging" msprop:Generator_RowEvHandlerName="dtFueledVehicleRowChangeEventHandler" msprop:Generator_RowDeletedName="dtFueledVehicleRowDeleted" msprop:Generator_UserTableName="dtFueledVehicle" msprop:Generator_RowChangedName="dtFueledVehicleRowChanged" msprop:Generator_RowEvArgName="dtFueledVehicleRowChangeEvent" msprop:Generator_RowClassName="dtFueledVehicleRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="DateFueled" msprop:Generator_ColumnVarNameInTable="columnDateFueled" msprop:Generator_ColumnPropNameInRow="DateFueled" msprop:Generator_ColumnPropNameInTable="DateFueledColumn" msprop:Generator_UserColumnName="DateFueled" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Office" msprop:Generator_ColumnVarNameInTable="columnOffice" msprop:Generator_ColumnPropNameInRow="Office" msprop:Generator_ColumnPropNameInTable="OfficeColumn" msprop:Generator_UserColumnName="Office" type="xs:string" minOccurs="0" />
+              <xs:element name="VehiclePlateNo" msprop:Generator_ColumnVarNameInTable="columnVehiclePlateNo" msprop:Generator_ColumnPropNameInRow="VehiclePlateNo" msprop:Generator_ColumnPropNameInTable="VehiclePlateNoColumn" msprop:Generator_UserColumnName="VehiclePlateNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Liters" msprop:Generator_ColumnVarNameInTable="columnLiters" msprop:Generator_ColumnPropNameInRow="Liters" msprop:Generator_ColumnPropNameInTable="LitersColumn" msprop:Generator_UserColumnName="Liters" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
